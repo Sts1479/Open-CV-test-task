@@ -4,10 +4,7 @@
  *  Created on: 4 янв. 2021 г.
  *      Author: user
  */
-#include <iostream>
-using namespace std;
 
-#include "ImageOpers.hpp"
 #include "Comm.hpp"
 Comm comm;
 
