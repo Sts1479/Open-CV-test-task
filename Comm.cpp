@@ -13,7 +13,17 @@ using namespace std;
 
 ImgParamsDto imgParamsDto;
 ImageOpers imageOpers;
+
+/**
+ * \brief выход из терминала
+ */
 void Comm::Quit() { exit(0); }
+
+/**
+ * \brief работает с командами из терминала
+ * \param[in] inString - строка с командой
+ * \return enum, соотвествующий команде терминала
+ */
 Comm::CommEnums Comm::toswitch(std::string const &inString){
 	if (inString == "q") return eQuit;
 	if (inString == "quit") return eQuit;
@@ -30,6 +40,10 @@ Comm::CommEnums Comm::toswitch(std::string const &inString){
 	if (inString == "bl") return eBlur;
 	return (Error);
 }
+/**
+ * \brief основной метод
+ * \details обработка команд терминала и вызов ImageMain()
+ */
 void Comm::TerminalCommander() {
   for (string line;
        cout << "Command ('h,help' for help) > " && getline(cin, line);) {
@@ -93,7 +107,9 @@ void Comm::TerminalCommander() {
     }
   }
 }
-
+/**
+ * \brief справка по командам
+ */
 void Comm::Help() {
   cout << "===============================================" << endl;
   cout << "Entering of the commands case insensitive!" << endl;

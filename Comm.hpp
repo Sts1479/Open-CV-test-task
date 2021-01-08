@@ -10,7 +10,9 @@
 
 
 #include <string>
-
+/**
+ * \brief класс обработки команд с терминала
+ */
 class Comm  {
  private:
   enum CommEnums {  // enumerate of the commands in menu

@@ -10,7 +10,9 @@ using namespace cv;
 using namespace std;
 extern ImgParamsDto imgParamsDto;
 #include <vector>
-
+/**
+ * \brief обнуляем все параметры для методов ImageOpers
+ */
 void ImgParamsDto::Clear (){
 	pathToFile.clear();
 	nameOfImg.clear();
@@ -21,11 +23,26 @@ void ImgParamsDto::Clear (){
 	operCode = 0;
 	blurCore = 0;
 }
+/**
+ *  \brief стирает map
+ */
+void ImgMap::clearMap (){
+	_imgMap.clear();
+}
 
+/**
+ * \brief помещает в ImgMap матрицу изобр. связанную с именем изобр.
+ * \param[in] imgname - имя изображения
+ * \param[in] mat - матрица изображения
+ */
 void ImgMap::addToMap(const std::string& imgname, const cv::Mat& mat){
 	    _imgMap[imgname] = mat;
 	}
-
+/**
+ * \brief ищет и выдает матрицу изобр. по имени
+ * \param[in] imgname - имя изображения
+ * \return матрица изображения
+ */
 Mat* ImgMap::getMatbyName(const std::string& imgname){
 		auto it = _imgMap.find(imgname);
 		if (it == _imgMap.end()){
@@ -36,7 +53,11 @@ Mat* ImgMap::getMatbyName(const std::string& imgname){
 			return &it->second;
 		}
 	}
-
+/**
+ * \brief сохраняет матрицу изобр., полученную из файла
+ * \param[in] imgname - имя изображения
+ * \param[in] imgpath - путь к файлу для чтения
+ */
 void ImageOpers::StoreToMat(const string& imgname, const string& imgpath){
 	 Mat img = imread(imgpath, IMREAD_UNCHANGED); // Read in the image file	 auto it = imgMap.find(imgname);
 	 if(img.empty()){
@@ -67,7 +88,12 @@ void ImageOpers::BlurImage(const string& imgname, const string &imgname_new, int
 	imgMap.addToMap(imgname_new, imgdst);
 	cout << "Operation successful!" << endl;
 }
-
+/**
+ * \brief сглаживает (фильтрует) изображение
+ * \param[in] imgname - имя старого изображения
+ * \param[in] imgname_new - имя нового изображения, куда сохр. результат
+ * \param[in] s - размер "ядра" сглаживания: если s = N, то ядро будет NxN элементов
+ */
 void ImageOpers::BlurImage(const string& imgname, const string &imgname_new, int s){
 	Mat *imgsrc;
 	Mat imgdst;
@@ -80,7 +106,13 @@ void ImageOpers::BlurImage(const string& imgname, const string &imgname_new, int
 	imgMap.addToMap(imgname_new, imgdst);
 	cout << "Operation successful!" << endl;
 }
-
+/**
+ * \brief ресайз изображения
+ * \param[in] imgname - имя старого изображения
+ * \param[in] imgname_new - имя нового изображения, куда сохр. результат
+ * \param[in] x - ширина изображения
+ * \param[in] y - высота изображения
+ */
 void ImageOpers::ResizeImage(const string& imgname, const string& imgname_new, int x, int y){
 	Mat *imgsrc;
 	Mat imgdst;
@@ -93,7 +125,11 @@ void ImageOpers::ResizeImage(const string& imgname, const string& imgname_new, i
 	imgMap.addToMap(imgname_new, imgdst);
 	cout << "Operation successful!" << endl;
 }
-
+/**
+ * \brief сохранение изображения
+ * \param[in] imgname - имя изображения
+ * \param[in] imgfile - путь к файлу для сохранения
+ */
 void ImageOpers::SaveImage(const string& imgname, const string& imgfile){
 	Mat *img;
 	img = imgMap.getMatbyName(imgname);
@@ -111,7 +147,9 @@ void ImageOpers::SaveImage(const string& imgname, const string& imgfile){
 	imwrite(imgfile,*img);
 	cout << "Operation successful!" << endl;
 }
-
+/**
+ * \brief основной метод для операций над изобр.
+ */
 void ImageOpers::ImageMain(){
 	   if (imgParamsDto.operCode == 1) {
 		  imgParamsDto.operCode = 0;

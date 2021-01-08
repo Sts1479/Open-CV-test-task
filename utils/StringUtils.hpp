@@ -165,8 +165,4 @@ namespace strutils {
 
 }
 
-
-
-
-
 #endif /* UTILS_STRINGUTILS_HPP_ */

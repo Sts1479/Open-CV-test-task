@@ -15,6 +15,9 @@
 #include <map>
 #include <utility>
 
+/**
+ * \brief класс, который реализует обращение к map
+ */
 class ImgMap {
 private:
 	std::map <std::string,cv::Mat> _imgMap;
@@ -22,13 +25,13 @@ public:
 	ImgMap(){};
 	~ImgMap(){};
 	void addToMap(const std::string& imgname, const cv::Mat& mat);
-	void clearMap (){
-		_imgMap.clear();
-	}
+	void clearMap ();
 	cv::Mat* getMatbyName(const std::string& imgname);
 };
 
-
+/**
+ * \brief структура DTO для передачи параметров из Comm в ImageOpers
+ */
 struct ImgParamsDto {
 	std::string pathToFile;
 	std::string nameOfImg;
@@ -41,8 +44,10 @@ struct ImgParamsDto {
 	void Clear ();
 };
 
+/**
+ * \brief Основной класс для чтения, обработки и сохранения изображений
+ */
 class ImageOpers {
-
 public:
 	ImageOpers(){};
 	~ImageOpers(){};
