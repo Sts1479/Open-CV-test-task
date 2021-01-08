@@ -14,7 +14,22 @@ using namespace std;
 ImgParamsDto imgParamsDto;
 ImageOpers imageOpers;
 void Comm::Quit() { exit(0); }
-
+Comm::CommEnums Comm::toswitch(std::string const &inString){
+	if (inString == "q") return eQuit;
+	if (inString == "quit") return eQuit;
+	if (inString == "exit") return eQuit;
+	if (inString == "ld") return eLoad;
+	if (inString == "load") return eLoad;
+	if (inString == "help") return eHelp;
+	if (inString == "h") return eHelp;
+	if (inString == "resize") return eResize;
+	if (inString == "rs") return eResize;
+	if (inString == "s") return eSave;
+	if (inString == "store") return eSave;
+	if (inString == "blur") return eBlur;
+	if (inString == "bl") return eBlur;
+	return (Error);
+}
 void Comm::TerminalCommander() {
   for (string line;
        cout << "Command ('h,help' for help) > " && getline(cin, line);) {

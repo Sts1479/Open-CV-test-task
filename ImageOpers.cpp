@@ -11,18 +11,31 @@ using namespace std;
 extern ImgParamsDto imgParamsDto;
 #include <vector>
 
-// unused method in this realization
-bool ImageOpers::VerifySizes(const cv::Mat& imgIn, int rows, int cols){
-	if (imgIn.rows < rows){
-        cout << "incorrect rows" << endl;
-        return false;
-	}
-	if (imgIn.cols < cols){
-        cout << "incorrect cols" << endl;
-        return false;
-	}
-	return true;
+void ImgParamsDto::Clear (){
+	pathToFile.clear();
+	nameOfImg.clear();
+	pathToFileNew.clear();
+	nameOfImgNew.clear();
+	newWidth = 0;
+	newHeight = 0;
+	operCode = 0;
+	blurCore = 0;
 }
+
+void ImgMap::addToMap(const std::string& imgname, const cv::Mat& mat){
+	    _imgMap[imgname] = mat;
+	}
+
+Mat* ImgMap::getMatbyName(const std::string& imgname){
+		auto it = _imgMap.find(imgname);
+		if (it == _imgMap.end()){
+			std::cout << "The image does not exist, enter correct name of an image." << std::endl;
+			return nullptr;
+		}
+		else {
+			return &it->second;
+		}
+	}
 
 void ImageOpers::StoreToMat(const string& imgname, const string& imgpath){
 	 Mat img = imread(imgpath, IMREAD_UNCHANGED); // Read in the image file	 auto it = imgMap.find(imgname);

@@ -9,12 +9,10 @@
 #define X86UTILS_COMM_HPP_
 
 
-#define ArrayT 1000U
 #include <string>
 
 class Comm  {
  private:
-
   enum CommEnums {  // enumerate of the commands in menu
     eQuit = 1,
     eLoad,
@@ -26,27 +24,11 @@ class Comm  {
   };
 
  public:
-   Comm() {}
-   CommEnums toswitch(std::string const &inString) {
-    if (inString == "q") return eQuit;
-    if (inString == "quit") return eQuit;
-    if (inString == "exit") return eQuit;
-    if (inString == "ld") return eLoad;
-    if (inString == "load") return eLoad;
-    if (inString == "help") return eHelp;
-    if (inString == "h") return eHelp;
-    if (inString == "resize") return eResize;
-    if (inString == "rs") return eResize;
-    if (inString == "s") return eSave;
-    if (inString == "store") return eSave;
-    if (inString == "blur") return eBlur;
-    if (inString == "bl") return eBlur;
-    return (Error);
-  }
+  Comm() {};
+  ~Comm() {};
+  CommEnums toswitch(std::string const &inString);
   void Help();
-
   void TerminalCommander();
-
   void Quit();
 };
 
