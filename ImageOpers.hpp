@@ -15,7 +15,6 @@
 #include <map>
 #include <utility>
 
-
 class ImgMap {
 private:
 	std::map <std::string,cv::Mat> _imgMap;

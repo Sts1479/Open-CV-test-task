@@ -11,9 +11,6 @@
 
 #define ArrayT 1000U
 #include <string>
-#include <iostream>
-#include <vector>
-#include <iostream>
 
 class Comm  {
  private:

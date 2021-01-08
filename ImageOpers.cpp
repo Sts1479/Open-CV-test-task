@@ -9,6 +9,7 @@
 using namespace cv;
 using namespace std;
 extern ImgParamsDto imgParamsDto;
+#include <vector>
 
 // unused method in this realization
 bool ImageOpers::VerifySizes(const cv::Mat& imgIn, int rows, int cols){
